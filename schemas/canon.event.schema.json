@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canon Event",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "EVENT.AERIAL_SURVEILLANCE_ACTIVE",
+        "EVENT.ARTIFACT_EQUIPPED",
+        "EVENT.AUDIT_CLOSED",
+        "EVENT.AUDIT_INITIATED",
+        "EVENT.BATNET_ADVISORY_ISSUED",
+        "EVENT.CONTAINMENT_DEPLOYED",
+        "EVENT.DISSENT_RECORDED",
+        "EVENT.EARLY_WARNING_ISSUED",
+        "EVENT.EMERGENCY_SIGNAL_RECEIVED",
+        "EVENT.ETHICAL_THRESHOLD_REQUIRES_CONFIRMATION",
+        "EVENT.EVIDENCE_LOGGED",
+        "EVENT.EXTRACTION_COMPLETED",
+        "EVENT.INCIDENT_REPORTED",
+        "EVENT.JOKER_CLASS_FLAGGED",
+        "EVENT.MISSION_AUTHORIZED",
+        "EVENT.MORAL_LOAD_EVALUATED",
+        "EVENT.OVERSIGHT_REVIEW_ESCALATED",
+        "EVENT.RESOLUTION_DEGRADED",
+        "EVENT.SELF_SCUTTLE_TRIGGERED",
+        "EVENT.TIMELINE_FORKED",
+        "EVENT.USE_OF_FORCE_LOGGED",
+        "EVENT.VEHICLE_DEPLOYED"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ],
+  "additionalProperties": true
+}
