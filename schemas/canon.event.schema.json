@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prime-dc.example/schemas/canon.event.schema.json",
+  "title": "Canon Event",
+  "description": "A single canon event entry for the DC Multiverse narrative engine.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "timeline",
+    "timestamp"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable identifier for the event.",
+      "pattern": "^[a-z0-9\\-_.]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "prime",
+        "enlightened",
+        "elseworld"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
