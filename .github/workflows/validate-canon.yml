@@ -1,0 +1,30 @@
+name: Validate Canon Objects
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-canon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: engine/validator/package-lock.json
+
+      - name: Install validator deps
+        working-directory: engine/validator
+        run: npm ci
+
+      - name: Build validator
+        working-directory: engine/validator
+        run: npm run build
+
+      - name: Validate canon objects
+        run: node engine/validator/dist/validate-canon.js --schema schemas/canon.object.schema.json
