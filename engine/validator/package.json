@@ -1,0 +1,10 @@
+{
+  "name": "canon-validator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Validate canon events against a JSON schema",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
