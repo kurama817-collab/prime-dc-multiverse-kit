@@ -1,0 +1,14 @@
+{
+  "name": "prime-dc-validator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:events": "ts-node src/validate-events.ts",
+    "validate:canon": "ts-node src/validate-canon.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
