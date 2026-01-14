@@ -1,0 +1,29 @@
+name: Validate Canon Events
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-events:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install validator deps
+        working-directory: engine/validator
+        run: npm ci
+
+      - name: Build validator
+        working-directory: engine/validator
+        run: npm run build
+
+      - name: Validate eventstreams
+        working-directory: .
+        run: node engine/validator/dist/validate-events.js --schema schemas/canon.event.schema.json
