@@ -1,0 +1,17 @@
+name: Validate Canon Objects (Stub)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-canon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Canon validation placeholder
+        run: |
+          echo "Canon YAML validation will be implemented next (schemas/canon.object.schema.json + YAML scanner)."
+          echo "PASS (stub)."

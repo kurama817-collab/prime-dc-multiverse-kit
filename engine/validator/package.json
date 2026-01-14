@@ -1,0 +1,25 @@
+{
+  "name": "prime-dc-multiverse-kit-validator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Validator for canon eventstreams + BatNet doctrine checks (deterministic replay governance).",
+  "scripts": {
+    "validate:events": "node --enable-source-maps dist/validate-events.js",
+    "build": "tsc -p tsconfig.json",
+    "dev:validate:events": "ts-node src/validate-events.ts"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "fast-glob": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
