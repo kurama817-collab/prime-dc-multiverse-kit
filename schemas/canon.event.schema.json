@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/canon.event.schema.json",
+  "title": "Canon Event Schema (Prime Batman / BatNet)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "ts",
+    "universe",
+    "timeline_id",
+    "actor",
+    "objects",
+    "payload",
+    "batnet"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier",
+      "pattern": "^evt_[a-zA-Z0-9_\\-]{8,}$"
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Event type enum",
+      "enum": [
+        "EVENT.MISSION_AUTHORIZED",
+        "EVENT.VEHICLE_DEPLOYED",
+        "EVENT.AERIAL_SURVEILLANCE_ACTIVE",
+        "EVENT.EXTRACTION_COMPLETED",
+        "EVENT.ARTIFACT_EQUIPPED",
+        "EVENT.USE_OF_FORCE_LOGGED",
+        "EVENT.EVIDENCE_LOGGED",
+        "EVENT.AUDIT_INITIATED",
+        "EVENT.AUDIT_CLOSED",
+        "EVENT.CANON_INCIDENT_FLAGGED",
+        "EVENT.POLICY_GATE_EVALUATED",
+        "EVENT.INCIDENT_REPORTED",
+        "EVENT.EMERGENCY_SIGNAL_RECEIVED",
+        "EVENT.TIMELINE_FORKED"
+      ]
+    },
+    "ts": {
+      "type": "string",
+      "description": "ISO-8601 timestamp",
+      "format": "date-time"
+    },
+    "universe": {
+      "type": "string",
+      "description": "Universe namespace",
+      "enum": ["prime-batman", "enlightened-dcu"]
+    },
+    "timeline_id": {
+      "type": "string",
+      "description": "Timeline identifier, e.g., timeline-a",
+      "pattern": "^timeline-[a-z0-9\\-]+$"
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_id", "role"],
+      "properties": {
+        "actor_id": { "type": "string", "pattern": "^ACTOR\\.[A-Z0-9_\\-\\.]+$" },
+        "role": {
+          "type": "string",
+          "enum": [
+            "prime-batman",
+            "batcave-operator",
+            "batnet-system",
+            "authorized-successor",
+            "enlightened-observer"
+          ]
+        },
+        "auth_context": {
+          "type": "string",
+          "description": "Authorization context or token reference"
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["object_id", "object_type"],
+        "properties": {
+          "object_id": { "type": "string", "pattern": "^OBJ\\.[A-Z0-9_\\-\\.]+$" },
+          "object_type": {
+            "type": "string",
+            "enum": ["artifact", "vehicle", "location", "system", "character"]
+          }
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific data payload",
+      "additionalProperties": true
+    },
+    "batnet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ledger", "policy"],
+      "properties": {
+        "ledger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prev_hash", "hash", "integrity"],
+          "properties": {
+            "prev_hash": { "type": "string", "description": "Previous event hash or GENESIS" },
+            "hash": { "type": "string", "description": "Current event hash" },
+            "integrity": { "type": "boolean" }
+          }
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nonlethal_priority", "audit_required"],
+          "properties": {
+            "nonlethal_priority": { "type": "boolean" },
+            "audit_required": { "type": "boolean" },
+            "override_authorized": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}
