@@ -1,0 +1,21 @@
+{
+  "name": "validator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "validate:events": "node --enable-source-maps dist/validate-events.js",
+    "validate:canon": "node --enable-source-maps dist/validate-canon.js",
+    "validate:timelines": "node --enable-source-maps dist/validate-timelines.js",
+    "export:canon": "node --enable-source-maps dist/export-canon.js"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.2",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
