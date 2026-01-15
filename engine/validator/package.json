@@ -1,0 +1,9 @@
+{
+  "name": "validator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Canon validator utilities",
+  "scripts": {
+    "test": "echo 'No tests specified'"
+  }
+}
