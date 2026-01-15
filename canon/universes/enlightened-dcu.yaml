@@ -1,0 +1,12 @@
+universe: enlightened-dcu
+description: Enlightened DCU registry (Superman/Batman/Wonder Woman enlightened era).
+canon_lock: true
+
+timelines:
+  - timeline_id: timeline-a
+    status: canon
+    canon_lock: true
+    label: Enlightened Continuity (A)
+    summary: Post-Justice League enlightened diplomatic era; restraint, plurality, and diplomacy at planetary scale.
+    allowed_crossovers:
+      - prime-batman
