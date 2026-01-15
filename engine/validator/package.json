@@ -1,0 +1,13 @@
+{
+  "name": "@prime-dc/validator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "validate:events": "node --enable-source-maps dist/validate-events.js --schema ../../schemas/canon.event.schema.json",
+    "validate:canon": "node --enable-source-maps dist/validate-canon.js --schema ../../schemas/canon.object.schema.json",
+    "validate:timelines": "node --enable-source-maps dist/validate-timelines.js --schema ../../schemas/canon.timeline.schema.json",
+    "export:canon": "node --enable-source-maps dist/export-canon.js --out ../../dist/canon-bundle --version 0.1.0"
+  }
+}
