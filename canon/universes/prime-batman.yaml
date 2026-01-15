@@ -1,0 +1,23 @@
+universe: prime-batman
+description: Prime Batman canonical universe registry (timelines and forks).
+canon_lock: true
+
+timelines:
+  - timeline_id: timeline-a
+    status: canon
+    canon_lock: true
+    label: Prime Continuity (A)
+    summary: The primary Prime Batman continuity; BatNet restraint architecture governs escalation.
+    allowed_crossovers:
+      - enlightened-dcu
+
+  - timeline_id: timeline-deferred-world
+    status: draft
+    label: Deferred World (B)
+    summary: Alternate branch where key vote/defer decision creates a slower-reveal timeline.
+    fork_of: timeline-a
+    fork_reason: "Deferred vote outcome preserves the good parts of continuity while enabling later discovery of Timeline A/B."
+    fork_event_ids:
+      - evt_deferVote0001
+    allowed_crossovers:
+      - enlightened-dcu

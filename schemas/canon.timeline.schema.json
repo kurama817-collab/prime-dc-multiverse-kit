@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/canon.timeline.schema.json",
+  "title": "Canon Universe Registry Schema (Timelines + Fork Governance)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["universe", "timelines"],
+  "properties": {
+    "universe": {
+      "type": "string",
+      "enum": ["prime-batman", "enlightened-dcu"]
+    },
+    "description": { "type": "string" },
+    "canon_lock": { "type": "boolean", "default": false },
+
+    "timelines": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/timeline" }
+    }
+  },
+  "$defs": {
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timeline_id", "status"],
+      "properties": {
+        "timeline_id": {
+          "type": "string",
+          "pattern": "^timeline-[a-z0-9\\-]+$"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["canon", "draft", "deprecated"]
+        },
+        "canon_lock": {
+          "type": "boolean",
+          "description": "If true, timeline is frozen as canonical."
+        },
+        "label": { "type": "string" },
+        "summary": { "type": "string" },
+
+        "fork_of": {
+          "type": "string",
+          "description": "Parent timeline_id if this is a fork.",
+          "pattern": "^timeline-[a-z0-9\\-]+$"
+        },
+        "fork_reason": { "type": "string" },
+
+        "fork_event_ids": {
+          "type": "array",
+          "description": "One or more canon events that define the split.",
+          "items": {
+            "type": "string",
+            "pattern": "^evt_[a-zA-Z0-9_\\-]{8,}$"
+          }
+        },
+
+        "allowed_crossovers": {
+          "type": "array",
+          "description": "Universes that are permitted to crossover with this timeline.",
+          "items": {
+            "type": "string",
+            "enum": ["prime-batman", "enlightened-dcu"]
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "required": ["fork_of"] },
+          "then": {
+            "required": ["fork_event_ids", "fork_reason"],
+            "properties": {
+              "fork_event_ids": { "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "canon_lock": { "const": true } },
+            "required": ["canon_lock"]
+          },
+          "then": {
+            "properties": { "status": { "const": "canon" } },
+            "required": ["status"]
+          }
+        }
+      ]
+    }
+  }
+}
