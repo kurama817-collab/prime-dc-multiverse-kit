@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canon.event.schema.json",
+  "title": "Canon Event",
+  "type": "object",
+  "required": ["eventId", "eventType", "timestamp", "object"],
+  "properties": {
+    "eventId": { "type": "string" },
+    "eventType": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "timeline": { "type": "string" },
+    "object": { "$ref": "canon.object.schema.json" },
+    "payload": { "type": "object", "additionalProperties": true },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,29 @@
+name: Validate Event Streams
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-events:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install validator dependencies
+        working-directory: engine/validator
+        run: npm install --no-audit --no-fund
+
+      - name: Build validator
+        working-directory: engine/validator
+        run: npm run build
+
+      - name: Validate event streams
+        working-directory: engine/validator
+        run: node dist/validate-events.js ../../examples/eventstreams

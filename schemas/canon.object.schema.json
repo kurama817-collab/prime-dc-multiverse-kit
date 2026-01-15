@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canon.object.schema.json",
+  "title": "Canon Object",
+  "type": "object",
+  "required": ["objectId", "objectType", "name"],
+  "properties": {
+    "objectId": { "type": "string" },
+    "objectType": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "originTimeline": { "type": "string" },
+    "attributes": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": true
+}
